@@ -275,27 +275,29 @@ def main():
     user_input = 999
     # ===Modify codes below=============
     # 위의 코드를 포함하여 자유로운 수정이 가능함
-    while user_input != '0':
+    while True:
         random_number = str(get_not_duplicated_three_digit_number())
         print("Random Number is : ", random_number)
         user_input_after_win = None
         while True:
             user_input = input("Input guess number : ")
+            if user_input == "0":
+                break
             if is_validated_number(user_input):
                 strikes, balls = get_strikes_or_ball(user_input, random_number)
                 print(f"Strikes : {strikes}, Balls : {balls}")
                 if strikes == 3:
                     while True:
                         user_input_after_win = input("You win, one more(Y/N) ?")
-                        if is_yes(user_input_after_win) or is_no(user_input_after_win):
+                        if is_yes(user_input_after_win) or is_no(user_input_after_win) or user_input_after_win=="0":
                             break
                         else:
                             print("Wrong Input, Input again")
-                    if is_yes(user_input_after_win) or is_no(user_input_after_win):
+                    if is_yes(user_input_after_win) or is_no(user_input_after_win) or user_input_after_win=="0":
                         break
             else:
                 print("Wrong Input, Input again")
-        if is_no(user_input_after_win):
+        if user_input=="0" or is_no(user_input_after_win) or user_input_after_win=="0":
             break
 
 
