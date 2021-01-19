@@ -278,23 +278,27 @@ def main():
     while user_input != '0':
         random_number = str(get_not_duplicated_three_digit_number())
         print("Random Number is : ", random_number)
-        user_input = input("Input guess number : ")
-
-        if is_validated_number(user_input):
-            strikes, balls = get_strikes_or_ball(user_input, random_number)
-            print(f"Strikes : {strikes}, Balls : {balls}")
-            if strikes == 3:
-                user_input_after_win = None
-                while True:
-                    user_input_after_win = input("You win, one more(Y/N) ?")
+        user_input_after_win = None
+        while True:
+            user_input = input("Input guess number : ")
+            if is_validated_number(user_input):
+                strikes, balls = get_strikes_or_ball(user_input, random_number)
+                print(f"Strikes : {strikes}, Balls : {balls}")
+                if strikes == 3:
+                    while True:
+                        user_input_after_win = input("You win, one more(Y/N) ?")
+                        if is_yes(user_input_after_win) or is_no(user_input_after_win):
+                            break
+                        else:
+                            print("Wrong Input, Input again")
                     if is_yes(user_input_after_win) or is_no(user_input_after_win):
                         break
-                    else:
-                        print("Wrong Input, Input again")
-                if is_no(user_input_after_win):
-                    break
-        else:
-            print("Wrong Input, Input again")
+            else:
+                print("Wrong Input, Input again")
+        if is_no(user_input_after_win):
+            break
+
+
     # ==================================
     print("Thank you for using this program")
     print("End of the Game")
